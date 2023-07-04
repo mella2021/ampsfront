@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/index.css">
+    <title>Edit new customer</title>
+</head>
+ <style>
+ body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      
+      display: flex;
+      flex-direction: column;
+    }
+ </style>
+<body>
+<h1>Edit Customer</h1>
+<div class="card">
+    
+        <!-- Form -->
+        <form id="addCustomerForm" >
+            
+            
+            </div>
+            <div class="form-row">
+              <div class="form-group ">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username"  name="username" >
+              </div>
+              
+              <div class="form-group ">
+                <label for="email"> Email</label>
+                <input type="email" class="form-control" id="email" name="email">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group ">
+                <label for="phone">Phone</label>
+                <input type="number" class="form-control" id="phone"  name="phone">
+              </div>
+            </div>
+            
+            
+               <button  type="submit"  class="btn btn-success"  >edit</button>
+     
+               <a href="Customerlist.html" class="btn btn-primary">Back</a>
+          </form>
+          <script>
+            // Retrieve customer data and populate the form
+const url = new URLSearchParams(window.location.search);
+const cuid = url.get('id');
+fetch(`http://localhost:8080/customer/getbyId/${cuid}`)
+  .then(response => response.json())
+  .then(customer => {
+    document.getElementById('username').value = customer.username;
+    document.getElementById('email').value = customer.email;
+    document.getElementById('phone').value = customer.phone;
+  });
+
+// Add event listener to the form submit
+const frm = document.getElementById('addCustomerForm');
+frm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  // Retrieve the updated values from the form
+  const username = document.getElementById('username').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+
+  // Create an object with the updated customer data
+  const updatedCustomer = {
+    
+    username: username,
+    email: email,
+    phone: phone
+  };
+
+  // Send updated data to the server
+  fetch(`http://localhost:8080/customer/update/${cuid}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedCustomer)
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Updated customer:', data);
+      // Optionally, redirect to the customer list page
+      window.location.href = 'Customerlist.html';
+    })
+    .catch(error => {
+      console.error('Error updating customer', error);
+    });
+});
+
+          </script>
+          </div>
+</body>
+</html>

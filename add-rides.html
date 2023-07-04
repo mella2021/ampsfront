@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Addnew</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/index.css">
+<style>
+  h1 {
+    color: rgb(38, 126, 129) ;
+    font-style: oblique;
+    text-align: center;
+    border-bottom: solid rgb(38, 126, 129) 1px;
+    border-top: solid rgb(38, 126, 129) 1px;
+  }
+</style>
+  </head>
+  
+<body>
+  <h1>ADD RIDES</h1>
+    <form id="add">
+        <div id="form-group">
+            <label for="name"> Ride name:</label>
+            <input type="text" id="name" name="product_name"  >
+          </div>
+          <div class="form-group">
+            <label for="price">Price (tzs):</label>
+            <input type="number" id="price" name="price"  >
+          </div>
+          <div class="form-group">
+            <label for="description">Desription</label>
+            <input type="text" id="description" name="description" >
+          </div>
+          <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" >
+          </div>
+    
+          <button  type="submit"  class="btn btn-success" >Save</button>
+
+    </form>
+    <script>
+
+        const addnew=document.getElementById('add');
+        addnew.addEventListener('submit',(e)=>{
+            e.preventDefault();
+           
+
+
+    const name = document.getElementById('name').value;
+  const price = document.getElementById('price').value;
+
+  const addProduct = {
+    product_name: name,
+    product_price: price
+  };
+
+  fetch('http://localhost:8080/product/save',{
+    method:'POST',
+    headers:{
+        'Content-Type':'application/json'
+    },
+    body:JSON.stringify(addProduct)
+  })
+  .then(response=>response.json())
+  .then(data =>{
+    console.log('saved',data);
+    alert('successfull saved')
+    window.location.href='productList.html';
+
+  }).catch(error=>{
+    console.error('Error',error);
+  });
+        });
+    </script>
+</body>
+</html>
+
+
+ <!-- Button trigger modal
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter Ride Information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="ridesForm">
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Ride name" formControlName="name">
+  
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Description" formControlName="description">
+              </div>
+  
+                 </div>
+            
+              <div class="row at -3">
+                <div class="col">
+                  <label for="profile" class="form-label">Image</label>
+                  <input type="file" class="form-control"  id="image" #fileInput>
+  
+                </div>
+              </div>
+            
+          </form>
+        </div>
+        <div class="modal-footer">
+         
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Insert</button>
+        </div>
+      </div> --> 

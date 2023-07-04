@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rides</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+<style>
+        
+.card{
+    border-style: double color=rgb(181, 66, 85);
+    text-align: center;
+    background-color:whitesmoke;
+    margin-right:300px;
+    margin-left:365px;    
+    margin-top: auto; 
+    margin-bottom: auto;
+    height:fit-content;
+    width:50%;
+}
+
+/* Style the navigation */
+
+nav {
+    display:inline-block;
+    flex-direction: row;
+    align-items: left;
+    justify-content: space-around;
+    
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+   background-color: rgb(218, 208, 210);
+    overflow: hidden;
+    margin-right:auto; 
+    margin-left:auto;
+}
+
+nav li {
+    display: inline;
+}
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+    float: left;
+    margin-left: 50px;
+    
+}
+
+nav li a {
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+
+    /* float: left; */
+    margin-left: 10px;
+}
+
+
+
+/* Style the main content section */
+main {
+    margin-top:auto ;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+/* Style the footer */
+footer {
+    
+    
+    padding: 20px;
+    text-align: center;
+}
+
+   .meh{
+   
+    height: 250px;
+
+}
+/* img{
+    float: left;
+    height: 200px;
+    width: 200px;
+    padding-top: 2px;
+    padding-right: 2px;
+} */
+p {
+    color:rgb(72, 71, 71);
+    font-style: italic;
+    font-weight: bold;
+}
+h1 {
+    color: rgb(38, 126, 129) ;
+    font-style: oblique;
+    text-align: center;
+    border-bottom: solid rgb(38, 126, 129) 1px;
+    border-top: solid rgb(38, 126, 129) 1px;
+}
+img{
+    display:flex;
+    height: 200px;
+    width:200px;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+  
+
+}
+#btn{
+    float:right;
+    color:green;
+    margin-right: 10px;
+
+}
+</style>
+ 
+
+
+    <header>
+        <img src="logofinal.png" alt="logo">
+        <h1>Welcome to the rides </h1>
+      
+      </header>
+      
+</head>
+<body>
+    <button id="btn"> Home</button>
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            window.location.href="index.html";
+        });
+    </script>
+</body>
+</html>

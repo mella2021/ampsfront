@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      display: flex;
+      color: rgb(181, 66, 85) ;
+    } */
+    
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    
+    input[type="submit"] {
+      background-color:  rgb(38, 126, 129);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      
+      
+    }
+    
+    input[type="submit"]:hover {
+      background-color: rgb(79, 159, 206);
+    }
+    
+
+  
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    justify-content: space-around;
+    
+}
+
+
+h1{
+    color: rgb(38, 126, 129) ;
+    font-style: oblique;
+    text-align: center;
+    border-bottom: solid rgb(38, 126, 129) 1px;
+    border-top: solid rgb(38, 126, 129) 1px;
+  }
+
+  </style>
+</head>
+<body>
+  <style>
+    /* Styles omitted for brevity */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Registration Form</h1>
+    <form id="registrationForm" method="post">
+
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required >
+      </div>
+
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="number" id="phone" name="phone" required >
+      </div>
+
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required >
+      </div>
+
+      <p>Already have an account? <a href="login.html">Log in</a></p>
+
+      <input type="submit" value="Register">
+      
+    </form>
+  </div>
+</body>
+  <script>
+    // Function to handle form submission
+    const form =document.getElementById('registrationForm');
+     form.addEventListener('submit',(event)=>{
+      event.preventDefault();
+       // Prevent the form from submitting normally
+
+// Get form values
+const phone= document.getElementById('phone');
+const email= document.getElementById('email');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+
+// Create an object with the form data
+const formData =new FormData(form);
+const customer=Object.fromEntries(formData.entries())
+
+
+// Send an HTTP POST request to the backend API
+fetch('http://localhost:8080/customer/save', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(customer)
+})
+  .then(response => response.json())
+  .then(data => {
+    // Handle the response from the backend
+    console.log(data); // You can do further processing or display a success message
+    // Reset the form
+    document.getElementById('registrationForm').reset();
+  })
+  .catch(error => {
+    console.error('Error:', error); // Handle any errors that occur during the request
+  });
+
+    });
+    
+      
+
+    // Add an event listener to the form submit button
+    document.getElementById('registrationForm').addEventListener
+
+  </script>
+</html> 
